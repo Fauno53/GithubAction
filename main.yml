@@ -4,6 +4,9 @@ on:
   pull_request:
     types:
       - opened
+jobs:
+  print-details:
+    runs-on: ubuntu-latest
 
 
     steps:
