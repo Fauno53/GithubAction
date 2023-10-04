@@ -1,0 +1,25 @@
+name: Primer Git Action
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  print-details:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Print Action
+      run: |
+        echo "Hello World"
+        echo "Autor: $GITHUB_ACTOR"
+        echo "Ultimo commit: $(git log -1 --format='%an <%ae>')"
+        echo "Cambios entre el último commit y la rama principal:"
+        git diff --name-only ${{ github.base_ref }}
